@@ -13,6 +13,7 @@ import lk.ijse.config.SessionFactoryConfiguration;
 import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 
@@ -53,6 +54,7 @@ public class SignupFormController {
 
         if (!validateName(nameText)) {
             showAlert("Invalid name", "name should only contain letters.");
+            return;
         }
 
         if (!validateUsername(usernameText)) {
@@ -60,7 +62,7 @@ public class SignupFormController {
         }
 
         else {
-            User user = new User(usernameText, nameText, passwordText, emailText);
+            User user = new User(nameText, emailText, usernameText, passwordText);
             Session session = SessionFactoryConfiguration.getInstance().getSession();
             Transaction transaction = session.beginTransaction();
 
@@ -74,13 +76,19 @@ public class SignupFormController {
     }
 
     private boolean validateName(String Name) {
-        String regexPattern = "^[a-zA-Z]+$\n";
+        String regexPattern = "^[a-zA-Z]+$";
         return Name.matches(regexPattern);
     }
 
     private boolean validateUsername(String userName) {
+        Session session = SessionFactoryConfiguration.getInstance().getSession();
+        String hql = "SELECT COUNT(u) FROM User u WHERE u.userName =:inputUserName";
+        Query<Long> query = session.createQuery(hql, Long.class);
+        query.setParameter("inputUserName", userName);
 
-        return true;
+        Long value = query.uniqueResult();
+        System.out.println(value);
+        return value < 0;
     }
 
     private void showAlert(String title, String content) {
