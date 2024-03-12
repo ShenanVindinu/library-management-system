@@ -88,6 +88,8 @@ public class SignupFormController {
 
         Long value = query.uniqueResult();
         System.out.println(value);
+
+        session.close();
         return value < 0;
     }
 
