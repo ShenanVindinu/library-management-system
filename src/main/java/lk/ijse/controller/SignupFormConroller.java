@@ -41,38 +41,7 @@ public class SignupFormConroller {
 
     @FXML
     void signup(ActionEvent event) {
-//        User user = new User(email, name, passwordFiled, username);
-    }
+        User user = new User(email.getText(), name.getText(), passwordFiled.getText(),username.getText());
 
-    public TextField getEmail() {
-        return email;
-    }
-
-    public void setEmail(TextField email) {
-        this.email = email;
-    }
-
-    public TextField getName() {
-        return name;
-    }
-
-    public void setName(TextField name) {
-        this.name = name;
-    }
-
-    public TextField getPasswordFiled() {
-        return passwordFiled;
-    }
-
-    public void setPasswordFiled(TextField passwordFiled) {
-        this.passwordFiled = passwordFiled;
-    }
-
-    public TextField getUsername() {
-        return username;
-    }
-
-    public void setUsername(TextField username) {
-        this.username = username;
     }
 }
