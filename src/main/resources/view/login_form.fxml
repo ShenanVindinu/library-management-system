@@ -15,12 +15,12 @@
             <Image url="@../asset/logo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="userNameField" layoutX="263.0" layoutY="335.0" prefHeight="37.0" prefWidth="274.0" promptText="Enetr your username">
+      <TextField fx:id="userNameField" focusTraversable="false" layoutX="263.0" layoutY="335.0" prefHeight="37.0" prefWidth="274.0" promptText="Enetr your username">
          <font>
             <Font name="Josefin Sans Regular" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="passwordFiled" layoutX="262.0" layoutY="402.0" prefHeight="31.0" prefWidth="274.0" promptText="Password">
+      <TextField fx:id="passwordFiled" focusTraversable="false" layoutX="262.0" layoutY="402.0" prefHeight="31.0" prefWidth="274.0" promptText="Password">
          <font>
             <Font size="16.0" />
          </font>
