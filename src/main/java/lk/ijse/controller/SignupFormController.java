@@ -57,7 +57,7 @@ public class SignupFormController {
             return;
         }
 
-        if (!validateUsername(usernameText)) {
+        if (validateUsername(usernameText)) {
             showAlert("username taken", "This username is already taken. please try another");
         }
 
@@ -88,9 +88,7 @@ public class SignupFormController {
 
         Long value = query.uniqueResult();
         System.out.println(value);
-
-        session.close();
-        return value < 0;
+        return value > 0;
     }
 
     private void showAlert(String title, String content) {
