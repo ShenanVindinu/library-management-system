@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.entity.User;
 
 import java.io.IOException;
 
@@ -40,7 +41,38 @@ public class SignupFormConroller {
 
     @FXML
     void signup(ActionEvent event) {
-
+//        User user = new User(email, name, passwordFiled, username);
     }
 
+    public TextField getEmail() {
+        return email;
+    }
+
+    public void setEmail(TextField email) {
+        this.email = email;
+    }
+
+    public TextField getName() {
+        return name;
+    }
+
+    public void setName(TextField name) {
+        this.name = name;
+    }
+
+    public TextField getPasswordFiled() {
+        return passwordFiled;
+    }
+
+    public void setPasswordFiled(TextField passwordFiled) {
+        this.passwordFiled = passwordFiled;
+    }
+
+    public TextField getUsername() {
+        return username;
+    }
+
+    public void setUsername(TextField username) {
+        this.username = username;
+    }
 }
