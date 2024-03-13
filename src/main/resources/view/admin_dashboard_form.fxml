@@ -36,7 +36,7 @@
                         <Font name="Josefin Sans Regular" size="24.0" />
                     </font></Button>
                 <Pane prefHeight="9.0" prefWidth="278.0" />
-                <Button fx:id="myProfileButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="252.0" mnemonicParsing="false" onAction="#visitMyProfile" prefHeight="88.0" prefWidth="285.0" stylesheets="@../css/fullpackstyling.css" text="My Profile" textFill="WHITE">
+                <Button fx:id="AdminProfileButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="252.0" mnemonicParsing="false" onAction="#visitAdminControlls" prefHeight="88.0" prefWidth="285.0" stylesheets="@../css/fullpackstyling.css" text="Admin Controlls" textFill="WHITE">
                     <padding>
                         <Insets left="40.0" />
                     </padding>

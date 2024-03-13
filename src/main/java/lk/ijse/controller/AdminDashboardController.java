@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 public class AdminDashboardController {
 
     @FXML
+    private Button AdminProfileButton;
+
+    @FXML
     private Button LogoutButton;
 
     @FXML
@@ -31,9 +34,6 @@ public class AdminDashboardController {
     private TableColumn<?, ?> genreColumn;
 
     @FXML
-    private Button myProfileButton;
-
-    @FXML
     private TextField searchBar;
 
     @FXML
@@ -53,12 +53,12 @@ public class AdminDashboardController {
     }
 
     @FXML
-    void visitDashboard(ActionEvent event) {
+    void visitAdminControlls(ActionEvent event) {
 
     }
 
     @FXML
-    void visitMyProfile(ActionEvent event) {
+    void visitDashboard(ActionEvent event) {
 
     }
 
