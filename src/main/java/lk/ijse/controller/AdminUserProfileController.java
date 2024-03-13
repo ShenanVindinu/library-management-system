@@ -8,6 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.config.SessionFactoryConfiguration;
+import lk.ijse.entity.Branch;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 
@@ -64,7 +68,37 @@ public class AdminUserProfileController {
 
     @FXML
     void addBranch(ActionEvent event) {
+        String branchName = branchField.getText();
 
+        if (branchName != null && !branchName.trim().isEmpty()) {
+            try {
+                Session session = SessionFactoryConfiguration.getInstance().getSession();
+                Transaction transaction = session.beginTransaction();
+
+
+                Branch existingBranch = (Branch) session.createQuery("FROM Branch WHERE branch = :branchName")
+                        .setParameter("branchName", branchName)
+                        .uniqueResult();
+
+                if (existingBranch == null) {
+
+                    Branch branch = new Branch();
+                    branch.setBranch(branchName);
+
+
+                    session.persist(branch);
+
+                    transaction.commit();
+                    System.out.println("Branch added successfully.");
+                } else {
+                    System.out.println("Branch already exists.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Please enter a valid branch name.");
+        }
     }
 
     @FXML

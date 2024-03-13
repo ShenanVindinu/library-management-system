@@ -9,21 +9,25 @@ import java.util.List;
 public class Branch {
 
     @Id
-    @Column(name = "Branch_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int branchId;
-    String branch;
-    @OneToMany(mappedBy = "branch")
+        @Column(name = "Branch_id")
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int branchId;
+
+    @Column(name = "Branch_name")
+    private String branch;
+
+    @OneToMany(mappedBy = "branch", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Book> bookList = new ArrayList<>();
+
 
     public Branch() {
     }
 
-    public Branch(int branchId, String branch, List<Book> bookList) {
-        this.branchId = branchId;
+
+    public Branch(String branch) {
         this.branch = branch;
-        this.bookList = bookList;
     }
+
 
     public int getBranchId() {
         return branchId;
@@ -41,14 +45,6 @@ public class Branch {
         this.branch = branch;
     }
 
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
-    }
-
     @Override
     public String toString() {
         return "Branch{" +
@@ -57,6 +53,4 @@ public class Branch {
                 ", bookList=" + bookList +
                 '}';
     }
-
-
 }
