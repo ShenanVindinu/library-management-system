@@ -40,7 +40,7 @@ public class LoginFormController {
     void login(ActionEvent event) throws IOException {
         if (loginManager(userNameField.getText(),passwordFiled.getText())) {
             showAlert2("Correct", "Welcome "+userNameField.getText());
-            Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashboard_form.fxml"));
+            Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard_form.fxml"));
             Stage window = (Stage) signupButton.getScene().getWindow();
             window.setScene(new Scene(rootNode, 1200,800));
         }

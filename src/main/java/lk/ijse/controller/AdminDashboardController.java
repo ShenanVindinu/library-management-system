@@ -7,10 +7,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class DashboardController {
+public class AdminDashboardController {
 
     @FXML
-    private TableView<?> bookTable;
+    private Button LogoutButton;
 
     @FXML
     private TableColumn<?, ?> authorColumn;
@@ -19,16 +19,16 @@ public class DashboardController {
     private TableColumn<?, ?> availabilityColumn;
 
     @FXML
+    private TableView<?> bookTable;
+
+    @FXML
     private TableColumn<?, ?> branchColumn;
 
     @FXML
-    private TableColumn<?, ?> genreColumn;
-
-    @FXML
-    private TableColumn<?, ?> titleColumn;
-
-    @FXML
     private Button dashboardButton;
+
+    @FXML
+    private TableColumn<?, ?> genreColumn;
 
     @FXML
     private Button myProfileButton;
@@ -40,8 +40,7 @@ public class DashboardController {
     private Button searchButton;
 
     @FXML
-    private Button LogoutButton;
-
+    private TableColumn<?, ?> titleColumn;
 
     @FXML
     void logout(ActionEvent event) {

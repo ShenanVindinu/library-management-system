@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200" style="-fx-background-color: #1c2333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashboardController">
+<AnchorPane prefHeight="800.0" prefWidth="1200" style="-fx-background-color: #1c2333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserDashboardController">
     <children>
         <VBox prefHeight="800.0" prefWidth="277.0" style="-fx-background-color: #212A3E;">
             <children>

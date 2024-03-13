@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200" style="-fx-background-color: #1c2333;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.AdminDashboardController">
+    <children>
+        <VBox prefHeight="800.0" prefWidth="277.0" style="-fx-background-color: #212A3E;">
+            <children>
+                <Pane prefHeight="242.0" prefWidth="350.0">
+                    <children>
+                        <ImageView fitHeight="424.0" fitWidth="408.0" layoutX="-64.0" layoutY="-15.0">
+                            <image>
+                                <Image url="@../asset/logo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Pane prefHeight="113.0" prefWidth="278.0" />
+                <Button fx:id="dashboardButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#visitDashboard" prefHeight="86.0" prefWidth="287.0" stylesheets="@../css/fullpackstyling.css" text="Dashboard" textFill="WHITE">
+                    <padding>
+                        <Insets left="40.0" />
+                    </padding>
+                    <font>
+                        <Font name="Josefin Sans Regular" size="24.0" />
+                    </font></Button>
+                <Pane prefHeight="9.0" prefWidth="278.0" />
+                <Button fx:id="myProfileButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="252.0" mnemonicParsing="false" onAction="#visitMyProfile" prefHeight="88.0" prefWidth="285.0" stylesheets="@../css/fullpackstyling.css" text="My Profile" textFill="WHITE">
+                    <padding>
+                        <Insets left="40.0" />
+                    </padding>
+                    <font>
+                        <Font name="Josefin Sans Regular" size="24.0" />
+                    </font>
+                </Button>
+                <Pane prefHeight="217.0" prefWidth="278.0" />
+                <Button fx:id="LogoutButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="516.0" mnemonicParsing="false" onAction="#logout" prefHeight="88.0" prefWidth="287.0" stylesheets="@../css/fullpackstyling.css" text="Logout" textFill="WHITE">
+                    <padding>
+                        <Insets left="40.0" />
+                    </padding>
+                    <font>
+                        <Font name="Josefin Sans Regular" size="24.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+        <TextField fx:id="searchBar" layoutX="324.0" layoutY="67.0" prefHeight="59.0" prefWidth="653.0" promptText="Click and enter title to find Book" style="-fx-background-radius: 45; -fx-background-color: #212A3E;" AnchorPane.leftAnchor="324.0" AnchorPane.rightAnchor="223.20000000000005">
+            <padding>
+                <Insets left="30.0" />
+            </padding>
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <Button fx:id="searchButton" layoutX="991.0" layoutY="66.0" mnemonicParsing="false" onAction="#searchBook" prefHeight="47.0" prefWidth="166.0" style="-fx-background-color: #212A3E; -fx-background-radius: 45;" text="Search" textFill="WHITE">
+            <font>
+                <Font name="Josefin Sans Regular" size="30.0" />
+            </font>
+        </Button>
+        <ScrollPane layoutX="325.0" layoutY="212.0" prefHeight="549.0" prefWidth="834.0" style="-fx-background-color: #212A3E;">
+            <content>
+                <TableView fx:id="bookTable" prefHeight="554.0" prefWidth="838.0" style="-fx-background-color: #212A3E;" stylesheets="@../css/fullpackstyling.css">
+                    <columns>
+                        <TableColumn fx:id="authorColumn" prefWidth="138.13329774141312" text="       Author" />
+                        <TableColumn fx:id="titleColumn" prefWidth="323.4666290283203" text="       Title" />
+                        <TableColumn fx:id="availabilityColumn" prefWidth="89.33331298828125" text="availability" />
+                        <TableColumn fx:id="genreColumn" prefWidth="131.199951171875" text="       genre" />
+                        <TableColumn fx:id="branchColumn" prefWidth="137.59991455078125" text="        Branch" />
+                    </columns>
+                </TableView>
+            </content>
+        </ScrollPane>
+        <Label layoutX="887.0" layoutY="168.0" style="-fx-background-color: #fffffff;" text="Click Book Below to order it" textFill="#f1f6f980">
+            <font>
+                <Font name="Josefin Sans Regular" size="22.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
