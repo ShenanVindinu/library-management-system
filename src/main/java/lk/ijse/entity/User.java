@@ -6,12 +6,13 @@ import jakarta.persistence.Id;
 @Entity
 public class User {
 
-    private String name;
-
-    private String email;
 
     @Id
     private String userName;
+
+    private String name;
+
+    private String email;
 
     private String password;
 
@@ -20,11 +21,19 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String userName, String password) {
+    public User(String userName, String name, String email, String password) {
+        this.userName = userName;
         this.name = name;
         this.email = email;
-        this.userName = userName;
         this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getName() {
@@ -43,14 +52,6 @@ public class User {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -62,11 +63,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
+
 
 }
