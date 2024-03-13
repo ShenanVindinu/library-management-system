@@ -9,11 +9,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.bo.SignupBO;
 import lk.ijse.config.SessionFactoryConfiguration;
 import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.io.IOException;
 
@@ -36,6 +36,8 @@ public class SignupFormController {
 
     @FXML
     private TextField username;
+
+    SignupBO signupBO = new SignupBO();
 
     @FXML
     void BackToLogin(ActionEvent event) throws IOException {
@@ -63,12 +65,7 @@ public class SignupFormController {
 
         else {
             User user = new User(nameText, emailText, usernameText, passwordText);
-            Session session = SessionFactoryConfiguration.getInstance().getSession();
-            Transaction transaction = session.beginTransaction();
-
-            session.persist(user);
-            session.getTransaction().commit();
-            session.close();
+            signupBO.saveUser(user);
         }
 
 
@@ -81,12 +78,7 @@ public class SignupFormController {
     }
 
     private boolean validateUsername(String userName) {
-        Session session = SessionFactoryConfiguration.getInstance().getSession();
-        String hql = "SELECT COUNT(u) FROM User u WHERE u.userName =:inputUserName";
-        Query<Long> query = session.createQuery(hql, Long.class);
-        query.setParameter("inputUserName", userName);
-
-        Long value = query.uniqueResult();
+        Long value = signupBO.checkIfUserNameExist(userName);
         System.out.println(value);
         return value > 0;
     }
