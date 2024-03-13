@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.bo.LoginBO;
 import lk.ijse.bo.LoginBOImpl;
 import lk.ijse.entity.User;
 
@@ -30,7 +31,7 @@ public class LoginFormController {
     @FXML
     private Text signupButton;
 
-
+    LoginBO loginBO = new LoginBOImpl();
 
 
 
@@ -66,7 +67,6 @@ public class LoginFormController {
     }
 
     private boolean loginManager(String userName, String password) {
-        LoginBOImpl loginBO = new LoginBOImpl();
         User user = loginBO.signIn(userName, password);
         return (user != null);
     }

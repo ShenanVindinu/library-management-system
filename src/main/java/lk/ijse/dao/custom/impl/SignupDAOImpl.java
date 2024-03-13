@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 
 public class SignupDAOImpl implements SignupDAO {
 
+    @Override
     public Long existUsername(String userName) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         String hql = "SELECT COUNT(u) FROM User u WHERE u.userName =:inputUserName";
@@ -18,6 +19,7 @@ public class SignupDAOImpl implements SignupDAO {
         return query.uniqueResult();
     }
 
+    @Override
     public void save(User user) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
