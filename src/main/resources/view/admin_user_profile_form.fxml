@@ -67,20 +67,29 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="titleField" layoutX="445.0" layoutY="163.0" prefHeight="43.0" prefWidth="445.0" promptText="Enter Title" />
-      <TextField fx:id="authorField" layoutX="443.0" layoutY="221.0" prefHeight="43.0" prefWidth="447.0" promptText="Enter Author" />
-      <TextField fx:id="genreField" layoutX="444.0" layoutY="278.0" prefHeight="43.0" prefWidth="445.0" promptText="Enter  Genre" />
-      <Button fx:id="addBookButton" layoutX="443.0" layoutY="354.0" mnemonicParsing="false" onAction="#addBook" prefHeight="45.0" prefWidth="108.0" style="-fx-background-color: #B2CD6C;" text="Add">
+      <TextField fx:id="titleField" layoutX="445.0" layoutY="163.0" prefHeight="43.0" prefWidth="445.0" promptText="Enter Title">
+         <font>
+            <Font name="Josefin Sans Regular" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="authorField" layoutX="443.0" layoutY="221.0" prefHeight="43.0" prefWidth="447.0" promptText="Enter Author">
+         <font>
+            <Font name="Josefin Sans Regular" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="genreField" layoutX="444.0" layoutY="278.0" prefHeight="43.0" prefWidth="445.0" promptText="Enter  Genre">
+         <font>
+            <Font name="Josefin Sans Regular" size="12.0" />
+         </font></TextField>
+      <Button fx:id="addBookButton" layoutX="443.0" layoutY="416.0" mnemonicParsing="false" onAction="#addBook" prefHeight="45.0" prefWidth="108.0" style="-fx-background-color: #B2CD6C;" text="Add">
          <font>
             <Font name="Josefin Sans Regular" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="updateBookButton" layoutX="589.0" layoutY="353.0" mnemonicParsing="false" onAction="#updateBookDetails" prefHeight="46.0" prefWidth="117.0" style="-fx-background-color: #B2CD6C;" text="Update">
+      <Button fx:id="updateBookButton" layoutX="589.0" layoutY="415.0" mnemonicParsing="false" onAction="#updateBookDetails" prefHeight="46.0" prefWidth="117.0" style="-fx-background-color: #B2CD6C;" text="Update">
          <font>
             <Font name="Josefin Sans Regular" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="removeBookButton" layoutX="752.0" layoutY="355.0" mnemonicParsing="false" onAction="#removeBook" prefHeight="46.0" prefWidth="126.0" style="-fx-background-color: #B2CD6C;" text="Remove">
+      <Button fx:id="removeBookButton" layoutX="752.0" layoutY="417.0" mnemonicParsing="false" onAction="#removeBook" prefHeight="46.0" prefWidth="126.0" style="-fx-background-color: #B2CD6C;" text="Remove">
          <font>
             <Font name="Josefin Sans Regular" size="24.0" />
          </font>
@@ -112,6 +121,16 @@
          </font>
       </Button>
       <Text fill="WHITE" layoutX="321.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="BookBranchField" layoutX="444.0" layoutY="337.0" prefHeight="43.0" prefWidth="445.0" promptText="Enter  Branch">
+         <font>
+            <Font name="Josefin Sans Regular" size="12.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="320.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Branch">
          <font>
             <Font size="24.0" />
          </font>
