@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class SignupDAOImpl {
+public class SignupDAOImpl implements SignupDAO {
 
     public Long existUsername(String userName) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
@@ -14,8 +14,7 @@ public class SignupDAOImpl {
         Query<Long> query = session.createQuery(hql, Long.class);
         query.setParameter("inputUserName", userName);
 
-        Long value = query.uniqueResult();
-        return value;
+        return query.uniqueResult();
     }
 
     public void save(User user) {
