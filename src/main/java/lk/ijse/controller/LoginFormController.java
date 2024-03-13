@@ -11,8 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.bo.LoginBO;
-import lk.ijse.bo.LoginBOImpl;
+import lk.ijse.bo.custom.LoginBO;
+import lk.ijse.bo.custom.impl.LoginBOImpl;
 import lk.ijse.entity.User;
 
 import java.io.IOException;

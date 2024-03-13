@@ -1,5 +1,6 @@
-package lk.ijse.bo;
+package lk.ijse.bo.custom.impl;
 
+import lk.ijse.bo.custom.LoginBO;
 import lk.ijse.dao.custom.LoginDAO;
 import lk.ijse.dao.custom.impl.LoginDAOImpl;
 import lk.ijse.entity.User;

@@ -9,8 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import lk.ijse.bo.SignupBO;
-import lk.ijse.bo.SignupBOImpl;
+import lk.ijse.bo.custom.SignupBO;
+import lk.ijse.bo.custom.impl.SignupBOImpl;
 import lk.ijse.entity.User;
 
 import java.io.IOException;
