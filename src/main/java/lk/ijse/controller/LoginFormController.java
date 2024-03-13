@@ -38,19 +38,22 @@ public class LoginFormController {
 
     @FXML
     void login(ActionEvent event) throws IOException {
+
+        if (userNameField.getText().equals("Admin")&passwordFiled.getText().equals("admin123")){
+            showAlert2("Correct", "Welcome "+userNameField.getText());
+            Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard_form.fxml"));
+            Stage window = (Stage) signupButton.getScene().getWindow();
+            window.setScene(new Scene(rootNode, 1200,800));
+            return;
+        }
+
         if (loginManager(userNameField.getText(),passwordFiled.getText())) {
-            if (userNameField.getText().equals("Admin")&passwordFiled.getText().equals("admin123")){
-                showAlert2("Correct", "Welcome "+userNameField.getText());
-                Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard_form.fxml"));
-                Stage window = (Stage) signupButton.getScene().getWindow();
-                window.setScene(new Scene(rootNode, 1200,800));
-            }
-            else {
+
                 showAlert2("Correct", "Welcome "+userNameField.getText());
                 Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard_form.fxml"));
                 Stage window = (Stage) signupButton.getScene().getWindow();
                 window.setScene(new Scene(rootNode, 1200,800));
-            }
+
         }
         else {
             showAlert("Incorrect", "Incorrect Credentials\nPlease try again");
