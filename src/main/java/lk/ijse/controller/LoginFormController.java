@@ -11,10 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lk.ijse.config.SessionFactoryConfiguration;
+import lk.ijse.bo.LoginBOImpl;
+import lk.ijse.dao.LoginDAOImpl;
 import lk.ijse.entity.User;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import java.io.IOException;
 
@@ -68,17 +67,9 @@ public class LoginFormController {
     }
 
     private boolean loginManager(String userName, String password) {
-        Session session = SessionFactoryConfiguration.getInstance().getSession();
-        String hql = "FROM User u WHERE u.userName = :inputUserName AND u.password = :inputPassword";
-        Query<User> query = session.createQuery(hql, User.class);
-        query.setParameter("inputUserName", userName);
-        query.setParameter("inputPassword", password);
-
-        User user = query.uniqueResult();
-        boolean isAuthenticated = (user != null);
-
-        session.close();
-        return isAuthenticated;
+        LoginBOImpl loginBO = new LoginBOImpl();
+        User user = loginBO.signIn(userName, password);
+        return (user != null);
     }
 
     private void showAlert(String title, String content) {
