@@ -1,7 +1,7 @@
 package lk.ijse.bo;
 
-import lk.ijse.dao.SignupDAO;
-import lk.ijse.dao.SignupDAOImpl;
+import lk.ijse.dao.custom.SignupDAO;
+import lk.ijse.dao.custom.impl.SignupDAOImpl;
 import lk.ijse.entity.User;
 
 public class SignupBO {

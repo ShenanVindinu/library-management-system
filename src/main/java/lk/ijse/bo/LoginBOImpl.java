@@ -1,7 +1,7 @@
 package lk.ijse.bo;
 
-import lk.ijse.dao.LoginDAO;
-import lk.ijse.dao.LoginDAOImpl;
+import lk.ijse.dao.custom.LoginDAO;
+import lk.ijse.dao.custom.impl.LoginDAOImpl;
 import lk.ijse.entity.User;
 
 public class LoginBOImpl {

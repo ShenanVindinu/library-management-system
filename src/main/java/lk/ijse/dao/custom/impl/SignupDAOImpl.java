@@ -1,6 +1,7 @@
-package lk.ijse.dao;
+package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.SessionFactoryConfiguration;
+import lk.ijse.dao.custom.SignupDAO;
 import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
