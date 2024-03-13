@@ -71,7 +71,9 @@ public class AdminDashboardController {
 
     @FXML
     void visitDashboard(ActionEvent event) throws IOException {
-
+        //no need to specify anything
+        //this was added by a mistake
+        // I'm lazy to remove it now.
     }
 
 }
