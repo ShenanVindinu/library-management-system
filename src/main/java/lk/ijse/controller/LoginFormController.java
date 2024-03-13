@@ -44,7 +44,7 @@ public class LoginFormController {
             window.setScene(new Scene(rootNode, 1200,800));
         }
         else {
-            showAlert("Incorrect Credentials", "Please try again");
+            showAlert("Incorrect", "Incorrect Credentials\nPlease try again");
         }
     }
 
@@ -70,7 +70,7 @@ public class LoginFormController {
     }
 
     private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
