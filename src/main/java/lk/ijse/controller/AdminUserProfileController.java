@@ -68,8 +68,10 @@ public class AdminUserProfileController {
     }
 
     @FXML
-    void logout(ActionEvent event) {
-
+    void logout(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));
+        Stage window = (Stage) LogoutButton.getScene().getWindow();
+        window.setScene(new Scene(rootNode, 800,600));
     }
 
     @FXML
