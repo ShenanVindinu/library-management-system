@@ -39,6 +39,7 @@ public class LoginFormController {
     @FXML
     void login(ActionEvent event) throws IOException {
         if (loginManager(userNameField.getText(),passwordFiled.getText())) {
+            showAlert2("Correct", "Welcome "+userNameField.getText());
             Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashboard_form.fxml"));
             Stage window = (Stage) signupButton.getScene().getWindow();
             window.setScene(new Scene(rootNode, 1200,800));
@@ -71,6 +72,14 @@ public class LoginFormController {
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private void showAlert2(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
