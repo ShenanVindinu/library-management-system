@@ -12,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lk.ijse.bo.LoginBOImpl;
-import lk.ijse.dao.LoginDAOImpl;
 import lk.ijse.entity.User;
 
 import java.io.IOException;
@@ -39,7 +38,7 @@ public class LoginFormController {
     void login(ActionEvent event) throws IOException {
 
         if (userNameField.getText().equals("Admin")&passwordFiled.getText().equals("admin123")){
-            showAlert2("Correct", "Welcome "+userNameField.getText());
+            showAlert2("Welcome "+userNameField.getText());
             Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard_form.fxml"));
             Stage window = (Stage) signupButton.getScene().getWindow();
             window.setScene(new Scene(rootNode, 1200,800));
@@ -48,14 +47,14 @@ public class LoginFormController {
 
         if (loginManager(userNameField.getText(),passwordFiled.getText())) {
 
-                showAlert2("Correct", "Welcome "+userNameField.getText());
+                showAlert2("Welcome "+userNameField.getText());
                 Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard_form.fxml"));
                 Stage window = (Stage) signupButton.getScene().getWindow();
                 window.setScene(new Scene(rootNode, 1200,800));
 
         }
         else {
-            showAlert("Incorrect", "Incorrect Credentials\nPlease try again");
+            showAlert();
         }
     }
 
@@ -72,17 +71,17 @@ public class LoginFormController {
         return (user != null);
     }
 
-    private void showAlert(String title, String content) {
+    private void showAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Incorrect");
         alert.setHeaderText(null);
-        alert.setContentText(content);
+        alert.setContentText("Incorrect Credentials\nPlease try again");
         alert.showAndWait();
     }
 
-    private void showAlert2(String title, String content) {
+    private void showAlert2(String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
+        alert.setTitle("Correct");
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
