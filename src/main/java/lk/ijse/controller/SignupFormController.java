@@ -9,11 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import lk.ijse.bo.SignupBO;
-import lk.ijse.config.SessionFactoryConfiguration;
+import lk.ijse.bo.SignupBOImpl;
 import lk.ijse.entity.User;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
 
@@ -37,7 +34,7 @@ public class SignupFormController {
     @FXML
     private TextField username;
 
-    SignupBO signupBO = new SignupBO();
+    SignupBOImpl signupBOImpl = new SignupBOImpl();
 
     @FXML
     void BackToLogin(ActionEvent event) throws IOException {
@@ -65,7 +62,7 @@ public class SignupFormController {
 
         else {
             User user = new User(nameText, emailText, usernameText, passwordText);
-            signupBO.saveUser(user);
+            signupBOImpl.saveUser(user);
         }
 
 
@@ -78,7 +75,7 @@ public class SignupFormController {
     }
 
     private boolean validateUsername(String userName) {
-        Long value = signupBO.checkIfUserNameExist(userName);
+        Long value = signupBOImpl.checkIfUserNameExist(userName);
         System.out.println(value);
         return value > 0;
     }

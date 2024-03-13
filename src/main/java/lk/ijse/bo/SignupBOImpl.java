@@ -4,7 +4,7 @@ import lk.ijse.dao.custom.SignupDAO;
 import lk.ijse.dao.custom.impl.SignupDAOImpl;
 import lk.ijse.entity.User;
 
-public class SignupBO {
+public class SignupBOImpl {
 
     SignupDAO signupDAOImpl = new SignupDAOImpl();
 
