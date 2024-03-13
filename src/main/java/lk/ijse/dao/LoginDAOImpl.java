@@ -5,8 +5,9 @@ import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-public class LoginDAOImpl {
+public class LoginDAOImpl implements LoginDAO {
 
+    @Override
     public User getUserNamePassword(String userName, String password) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         String hql = "FROM User u WHERE u.userName = :inputUserName AND u.password = :inputPassword";
