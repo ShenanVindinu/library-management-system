@@ -9,7 +9,7 @@ public class LoginBOImpl {
         LoginDAOImpl loginDAO = new LoginDAOImpl();
         User user = loginDAO.getUserNamePassword(userName,password);
 
-        return new User();
+        return user;
     }
 
 }
