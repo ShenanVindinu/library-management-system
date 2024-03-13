@@ -42,6 +42,8 @@ public class AdminDashboardController {
     @FXML
     private TableColumn<?, ?> titleColumn;
 
+
+
     @FXML
     void logout(ActionEvent event) {
 
