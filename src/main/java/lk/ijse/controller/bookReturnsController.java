@@ -39,8 +39,10 @@ public class bookReturnsController {
     private TableColumn<?, ?> userName;
 
     @FXML
-    void backToAddBooks(ActionEvent event) {
-
+    void backToAddBooks(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_user_profile_form.fxml"));
+        Stage window = (Stage) dashboardButton.getScene().getWindow();
+        window.setScene(new Scene(rootNode, 1200,800));
     }
 
     @FXML
@@ -51,8 +53,10 @@ public class bookReturnsController {
     }
 
     @FXML
-    void visitDashboard(ActionEvent event) {
-
+    void visitDashboard(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard_form.fxml"));
+        Stage window = (Stage) dashboardButton.getScene().getWindow();
+        window.setScene(new Scene(rootNode, 1200,800));
     }
 
     @FXML

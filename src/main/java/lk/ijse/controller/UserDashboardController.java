@@ -69,8 +69,10 @@ public class UserDashboardController {
     }
 
     @FXML
-    void visitMyProfile(ActionEvent event) {
-
+    void visitMyProfile(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_profile_form.fxml"));
+        Stage window = (Stage) dashboardButton.getScene().getWindow();
+        window.setScene(new Scene(rootNode, 1200,800));
     }
 
 }

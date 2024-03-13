@@ -90,8 +90,10 @@ public class AdminUserProfileController {
     }
 
     @FXML
-    void visitBookManager(ActionEvent event) {
-
+    void visitBookManager(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_returns.fxml"));
+        Stage window = (Stage) dashboardButton.getScene().getWindow();
+        window.setScene(new Scene(rootNode, 1200,800));
     }
 
     @FXML

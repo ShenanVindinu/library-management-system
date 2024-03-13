@@ -55,8 +55,10 @@ public class UserProfileForm {
     }
 
     @FXML
-    void visitDashboard(ActionEvent event) {
-
+    void visitDashboard(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard_form.fxml"));
+        Stage window = (Stage) dashboardButton.getScene().getWindow();
+        window.setScene(new Scene(rootNode, 1200,800));
     }
 
     @FXML
@@ -65,8 +67,10 @@ public class UserProfileForm {
     }
 
     @FXML
-    void visitUserDetails(ActionEvent event) {
-
+    void visitUserDetails(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_details.fxml"));
+        Stage window = (Stage) dashboardButton.getScene().getWindow();
+        window.setScene(new Scene(rootNode, 1200,800));
     }
 
 }
