@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class SignupDAO {
+public class SignupDAOImpl {
 
     public Long existUsername(String userName) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
