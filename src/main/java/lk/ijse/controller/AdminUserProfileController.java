@@ -8,7 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.bo.custom.impl.AdminUserProfileBO;
 import lk.ijse.config.SessionFactoryConfiguration;
+import lk.ijse.dao.custom.impl.AdminUserProfileDAO;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 import org.hibernate.Session;
@@ -61,6 +63,8 @@ public class AdminUserProfileController {
     @FXML
     private Button updateBookButton;
 
+    AdminUserProfileBO adminUserProfileBO = new AdminUserProfileBO();
+
 
 
 
@@ -72,28 +76,13 @@ public class AdminUserProfileController {
         String genre = genreField.getText();
         String branchName = BookBranchField.getText();
 
-
-        Branch branch = fetchBranchByName(branchName);
+        Branch branch = adminUserProfileBO.getBranchByName(branchName);
 
         if (branch != null) {
-
             Book book = new Book(title, true, author, genre);
             book.setBranch(branch);
-
-            Session session = SessionFactoryConfiguration.getInstance().getSession();
-            Transaction transaction = session.beginTransaction();
-
-            try {
-                session.persist(book);
-                transaction.commit();
-                System.out.println("Book added successfully!");
-            } catch (Exception e) {
-                transaction.rollback();
-                e.printStackTrace();
-                System.err.println("Failed to add book.");
-            } finally {
-                session.close();
-            }
+            adminUserProfileBO.saveBookToTable(book);
+            System.out.println("Book added successfully!");
         } else {
             System.err.println("Branch with name '" + branchName + "' not found.");
         }
@@ -104,30 +93,16 @@ public class AdminUserProfileController {
         String branchName = branchField.getText();
 
         if (branchName != null && !branchName.trim().isEmpty()) {
-            try {
-                Session session = SessionFactoryConfiguration.getInstance().getSession();
-                Transaction transaction = session.beginTransaction();
 
+            Branch existingBranch = adminUserProfileBO.getBranchByName(branchName);
 
-                Branch existingBranch = (Branch) session.createQuery("FROM Branch WHERE branch = :branchName")
-                        .setParameter("branchName", branchName)
-                        .uniqueResult();
-
-                if (existingBranch == null) {
-
-                    Branch branch = new Branch();
-                    branch.setBranch(branchName);
-
-
-                    session.persist(branch);
-
-                    transaction.commit();
-                    System.out.println("Branch added successfully.");
-                } else {
-                    System.out.println("Branch already exists.");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (existingBranch == null) {
+                Branch branch = new Branch();
+                branch.setBranch(branchName);
+                adminUserProfileBO.savingBranchToTable(branch);
+                System.out.println("Branch added successfully.");
+            } else {
+                System.out.println("Branch already exists.");
             }
         } else {
             System.out.println("Please enter a valid branch name.");
@@ -143,34 +118,18 @@ public class AdminUserProfileController {
 
     @FXML
     void removeBook(ActionEvent event) {
-        // Get input value from text field
+
         String title = titleField.getText();
 
-        Session session = SessionFactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+        Book book = adminUserProfileBO.findBookByName(title);
 
-        try {
-            // Retrieve the book entity to remove
-            Query<Book> query = session.createQuery("FROM Book WHERE bookName = :title", Book.class);
-            query.setParameter("title", title);
-            Book book = query.uniqueResult();
-
-            if (book != null) {
-                // Remove associated references
-                book.getBranch().getBookList().remove(book);
-                session.delete(book);
-                transaction.commit();
-                System.out.println("Book removed successfully!");
-            } else {
-                System.err.println("Book with title '" + title + "' not found.");
-            }
-        } catch (Exception e) {
-            transaction.rollback();
-            e.printStackTrace();
-            System.err.println("Failed to remove book.");
-        } finally {
-            session.close();
+        if (book != null) {
+            adminUserProfileBO.removingAssociatedReferences(book);
+            System.out.println("Book removed successfully!");
+        } else {
+            System.err.println("Book with title '" + title + "' not found.");
         }
+
     }
 
     @FXML
@@ -178,25 +137,17 @@ public class AdminUserProfileController {
 
         String branchName = branchField.getText();
 
-        Session session = SessionFactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        Query<Branch> query = session.createQuery("FROM Branch WHERE branch = :branchName", Branch.class);
-        query.setParameter("branchName", branchName);
-        Branch branch = query.uniqueResult();
+        Branch branch = adminUserProfileBO.getBranchByName(branchName);
 
         if (branch != null) {
 
-            session.remove(branch);
-            transaction.commit();
+            adminUserProfileBO.removeBranches(branch);
 
             System.out.println("Branch removed successfully: " + branchName);
         } else {
 
             System.out.println("No branch found with the name: " + branchName);
         }
-
-        session.close();
     }
 
     @FXML
@@ -208,36 +159,15 @@ public class AdminUserProfileController {
         String branchName = BookBranchField.getText();
 
 
-        Branch branch = fetchBranchByName(branchName);
+        Branch branch = adminUserProfileBO.getBranchByName(branchName);
 
         if (branch != null) {
-            Session session = SessionFactoryConfiguration.getInstance().getSession();
-            Transaction transaction = session.beginTransaction();
-
-            try {
-
-                Query<Book> query = session.createQuery("FROM Book WHERE bookName = :title", Book.class);
-                query.setParameter("title", title);
-                Book book = query.uniqueResult();
-
-                if (book != null) {
-
-                    book.setAuthor(author);
-                    book.setGenre(genre);
-                    book.setBranch(branch);
-
-                    session.merge(book);
-                    transaction.commit();
-                    System.out.println("Book details updated successfully!");
-                } else {
-                    System.err.println("Book with title '" + title + "' not found.");
-                }
-            } catch (Exception e) {
-                transaction.rollback();
-                e.printStackTrace();
-                System.err.println("Failed to update book details.");
-            } finally {
-                session.close();
+            Book book = adminUserProfileBO.findBookByName(title);
+            if (book != null) {
+                adminUserProfileBO.updateBookDetails(book,author,genre,branch);
+                System.out.println("Book details updated successfully!");
+            } else {
+                System.err.println("Book with title '" + title + "' not found.");
             }
         } else {
             System.err.println("Branch with name '" + branchName + "' not found.");
@@ -261,17 +191,6 @@ public class AdminUserProfileController {
     @FXML
     void visitMyProfile(ActionEvent event) {
 
-    }
-
-    private Branch fetchBranchByName(String branchName) {
-        try (Session session = SessionFactoryConfiguration.getInstance().getSession()) {
-            Query<Branch> query = session.createQuery("FROM Branch WHERE branch = :branchName", Branch.class);
-            query.setParameter("branchName", branchName);
-            return query.uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
 }
