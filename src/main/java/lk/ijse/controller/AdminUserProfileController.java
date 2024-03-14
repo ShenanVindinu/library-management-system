@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lk.ijse.config.SessionFactoryConfiguration;
+import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,6 +18,21 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 
 public class AdminUserProfileController {
+
+    @FXML
+    private TextField titleField;
+
+    @FXML
+    private TextField authorField;
+
+    @FXML
+    private TextField genreField;
+
+    @FXML
+    private TextField BookBranchField;
+
+    @FXML
+    private TextField branchField;
 
     @FXML
     private Button LogoutButton;
@@ -28,19 +44,10 @@ public class AdminUserProfileController {
     private Button addBranchButton;
 
     @FXML
-    private TextField authorField;
-
-    @FXML
     private Button boolManagerButton;
 
     @FXML
-    private TextField branchField;
-
-    @FXML
     private Button dashboardButton;
-
-    @FXML
-    private TextField genreField;
 
     @FXML
     private Button myProfileButton;
@@ -52,19 +59,44 @@ public class AdminUserProfileController {
     private Button removeBranchButton;
 
     @FXML
-    private TextField titleField;
-
-    @FXML
     private Button updateBookButton;
 
-    @FXML
-    private TextField BookBranchField;
+
 
 
 
     @FXML
     void addBook(ActionEvent event) {
+        String title = titleField.getText();
+        String author = authorField.getText();
+        String genre = genreField.getText();
+        String branchName = BookBranchField.getText();
 
+
+        Branch branch = fetchBranchByName(branchName);
+
+        if (branch != null) {
+
+            Book book = new Book(title, true, author, genre);
+            book.setBranch(branch);
+
+            Session session = SessionFactoryConfiguration.getInstance().getSession();
+            Transaction transaction = session.beginTransaction();
+
+            try {
+                session.persist(book);
+                transaction.commit();
+                System.out.println("Book added successfully!");
+            } catch (Exception e) {
+                transaction.rollback();
+                e.printStackTrace();
+                System.err.println("Failed to add book.");
+            } finally {
+                session.close();
+            }
+        } else {
+            System.err.println("Branch with name '" + branchName + "' not found.");
+        }
     }
 
     @FXML
@@ -111,7 +143,34 @@ public class AdminUserProfileController {
 
     @FXML
     void removeBook(ActionEvent event) {
+        // Get input value from text field
+        String title = titleField.getText();
 
+        Session session = SessionFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            // Retrieve the book entity to remove
+            Query<Book> query = session.createQuery("FROM Book WHERE bookName = :title", Book.class);
+            query.setParameter("title", title);
+            Book book = query.uniqueResult();
+
+            if (book != null) {
+                // Remove associated references
+                book.getBranch().getBookList().remove(book);
+                session.delete(book);
+                transaction.commit();
+                System.out.println("Book removed successfully!");
+            } else {
+                System.err.println("Book with title '" + title + "' not found.");
+            }
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+            System.err.println("Failed to remove book.");
+        } finally {
+            session.close();
+        }
     }
 
     @FXML
@@ -143,6 +202,46 @@ public class AdminUserProfileController {
     @FXML
     void updateBookDetails(ActionEvent event) {
 
+        String title = titleField.getText();
+        String author = authorField.getText();
+        String genre = genreField.getText();
+        String branchName = BookBranchField.getText();
+
+
+        Branch branch = fetchBranchByName(branchName);
+
+        if (branch != null) {
+            Session session = SessionFactoryConfiguration.getInstance().getSession();
+            Transaction transaction = session.beginTransaction();
+
+            try {
+
+                Query<Book> query = session.createQuery("FROM Book WHERE bookName = :title", Book.class);
+                query.setParameter("title", title);
+                Book book = query.uniqueResult();
+
+                if (book != null) {
+
+                    book.setAuthor(author);
+                    book.setGenre(genre);
+                    book.setBranch(branch);
+
+                    session.merge(book);
+                    transaction.commit();
+                    System.out.println("Book details updated successfully!");
+                } else {
+                    System.err.println("Book with title '" + title + "' not found.");
+                }
+            } catch (Exception e) {
+                transaction.rollback();
+                e.printStackTrace();
+                System.err.println("Failed to update book details.");
+            } finally {
+                session.close();
+            }
+        } else {
+            System.err.println("Branch with name '" + branchName + "' not found.");
+        }
     }
 
     @FXML
@@ -162,6 +261,17 @@ public class AdminUserProfileController {
     @FXML
     void visitMyProfile(ActionEvent event) {
 
+    }
+
+    private Branch fetchBranchByName(String branchName) {
+        try (Session session = SessionFactoryConfiguration.getInstance().getSession()) {
+            Query<Branch> query = session.createQuery("FROM Branch WHERE branch = :branchName", Branch.class);
+            query.setParameter("branchName", branchName);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

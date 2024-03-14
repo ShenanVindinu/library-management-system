@@ -16,6 +16,7 @@ public class Branch {
     @Column(name = "Branch_name")
     private String branch;
 
+
     @OneToMany(mappedBy = "branch", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Book> bookList = new ArrayList<>();
 
@@ -43,6 +44,14 @@ public class Branch {
 
     public void setBranch(String branch) {
         this.branch = branch;
+    }
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 
     @Override
