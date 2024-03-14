@@ -12,6 +12,7 @@ import lk.ijse.config.SessionFactoryConfiguration;
 import lk.ijse.entity.Branch;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 
@@ -116,6 +117,27 @@ public class AdminUserProfileController {
     @FXML
     void removeBranch(ActionEvent event) {
 
+        String branchName = branchField.getText();
+
+        Session session = SessionFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Branch> query = session.createQuery("FROM Branch WHERE branch = :branchName", Branch.class);
+        query.setParameter("branchName", branchName);
+        Branch branch = query.uniqueResult();
+
+        if (branch != null) {
+
+            session.remove(branch);
+            transaction.commit();
+
+            System.out.println("Branch removed successfully: " + branchName);
+        } else {
+
+            System.out.println("No branch found with the name: " + branchName);
+        }
+
+        session.close();
     }
 
     @FXML
