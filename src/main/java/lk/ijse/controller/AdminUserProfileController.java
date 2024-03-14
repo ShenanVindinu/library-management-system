@@ -8,14 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import lk.ijse.bo.custom.impl.AdminUserProfileBO;
-import lk.ijse.config.SessionFactoryConfiguration;
-import lk.ijse.dao.custom.impl.AdminUserProfileDAO;
+import lk.ijse.bo.custom.AdminUserProfileBO;
+import lk.ijse.bo.custom.impl.AdminUserProfileBOImpl;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.io.IOException;
 
@@ -63,7 +59,7 @@ public class AdminUserProfileController {
     @FXML
     private Button updateBookButton;
 
-    AdminUserProfileBO adminUserProfileBO = new AdminUserProfileBO();
+    AdminUserProfileBO adminUserProfileBOImpl = new AdminUserProfileBOImpl();
 
 
 
@@ -76,12 +72,12 @@ public class AdminUserProfileController {
         String genre = genreField.getText();
         String branchName = BookBranchField.getText();
 
-        Branch branch = adminUserProfileBO.getBranchByName(branchName);
+        Branch branch = adminUserProfileBOImpl.getBranchByName(branchName);
 
         if (branch != null) {
             Book book = new Book(title, true, author, genre);
             book.setBranch(branch);
-            adminUserProfileBO.saveBookToTable(book);
+            adminUserProfileBOImpl.saveBookToTable(book);
             System.out.println("Book added successfully!");
         } else {
             System.err.println("Branch with name '" + branchName + "' not found.");
@@ -94,12 +90,12 @@ public class AdminUserProfileController {
 
         if (branchName != null && !branchName.trim().isEmpty()) {
 
-            Branch existingBranch = adminUserProfileBO.getBranchByName(branchName);
+            Branch existingBranch = adminUserProfileBOImpl.getBranchByName(branchName);
 
             if (existingBranch == null) {
                 Branch branch = new Branch();
                 branch.setBranch(branchName);
-                adminUserProfileBO.savingBranchToTable(branch);
+                adminUserProfileBOImpl.savingBranchToTable(branch);
                 System.out.println("Branch added successfully.");
             } else {
                 System.out.println("Branch already exists.");
@@ -121,10 +117,10 @@ public class AdminUserProfileController {
 
         String title = titleField.getText();
 
-        Book book = adminUserProfileBO.findBookByName(title);
+        Book book = adminUserProfileBOImpl.findBookByName(title);
 
         if (book != null) {
-            adminUserProfileBO.removingAssociatedReferences(book);
+            adminUserProfileBOImpl.removingAssociatedReferences(book);
             System.out.println("Book removed successfully!");
         } else {
             System.err.println("Book with title '" + title + "' not found.");
@@ -137,11 +133,11 @@ public class AdminUserProfileController {
 
         String branchName = branchField.getText();
 
-        Branch branch = adminUserProfileBO.getBranchByName(branchName);
+        Branch branch = adminUserProfileBOImpl.getBranchByName(branchName);
 
         if (branch != null) {
 
-            adminUserProfileBO.removeBranches(branch);
+            adminUserProfileBOImpl.removeBranches(branch);
 
             System.out.println("Branch removed successfully: " + branchName);
         } else {
@@ -159,12 +155,12 @@ public class AdminUserProfileController {
         String branchName = BookBranchField.getText();
 
 
-        Branch branch = adminUserProfileBO.getBranchByName(branchName);
+        Branch branch = adminUserProfileBOImpl.getBranchByName(branchName);
 
         if (branch != null) {
-            Book book = adminUserProfileBO.findBookByName(title);
+            Book book = adminUserProfileBOImpl.findBookByName(title);
             if (book != null) {
-                adminUserProfileBO.updateBookDetails(book,author,genre,branch);
+                adminUserProfileBOImpl.updateBookDetails(book,author,genre,branch);
                 System.out.println("Book details updated successfully!");
             } else {
                 System.err.println("Book with title '" + title + "' not found.");

@@ -1,14 +1,16 @@
 package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.SessionFactoryConfiguration;
+import lk.ijse.dao.custom.AdminUserProfileDAO;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class AdminUserProfileDAO {
+public class AdminUserProfileDAOImpl implements AdminUserProfileDAO {
 
+    @Override
     public Branch fetchBranchByName(String branchName) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Query<Branch> query = session.createQuery("FROM Branch WHERE branch = :branchName", Branch.class);
@@ -18,6 +20,7 @@ public class AdminUserProfileDAO {
         return branch;
     }
 
+    @Override
     public Book findBook(String title)  {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -28,6 +31,7 @@ public class AdminUserProfileDAO {
         return book;
     }
 
+    @Override
     public void updateBook(Book book, String author, String genre, Branch branch) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -39,6 +43,7 @@ public class AdminUserProfileDAO {
         session.close();
     }
 
+    @Override
     public void removeBranch(Branch branch) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -47,6 +52,7 @@ public class AdminUserProfileDAO {
         session.close();
     }
 
+    @Override
     public void removeReference(Book book) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -56,6 +62,7 @@ public class AdminUserProfileDAO {
         session.close();
     }
 
+    @Override
     public void saveBranch(Branch branch) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -64,6 +71,7 @@ public class AdminUserProfileDAO {
         session.close();
     }
 
+    @Override
     public void saveBook(Book book) {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
