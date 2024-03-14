@@ -21,13 +21,11 @@ public class Book {
     public Book() {
     }
 
-    public Book(String bookName, boolean availability, String author, String genre, Branch branch, BookHistory bookHistory) {
+    public Book(String bookName, boolean availability, String author, String genre) {
         this.bookName = bookName;
         this.availability = availability;
         this.author = author;
         this.genre = genre;
-        this.branch = branch;
-        this.bookHistory = bookHistory;
     }
 
     public String getBookName() {

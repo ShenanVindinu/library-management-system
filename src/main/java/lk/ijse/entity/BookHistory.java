@@ -13,7 +13,6 @@ public class BookHistory {
     @Column(name = "h_id")
     private int hId;
     private boolean returned;
-    private String userName;
     @Column(name = "book_name")
     private String bookName;
     @Temporal(TemporalType.DATE)
@@ -27,14 +26,11 @@ public class BookHistory {
     public BookHistory() {
     }
 
-    public BookHistory(int hId, boolean returned, String userName, String bookName, Date dueDate, List<Book> books, User user) {
+    public BookHistory(int hId, boolean returned, String bookName, Date dueDate) {
         this.hId = hId;
         this.returned = returned;
-        this.userName = userName;
         this.bookName = bookName;
         this.dueDate = dueDate;
-        this.books = books;
-        this.user = user;
     }
 
     public int gethId() {
@@ -51,14 +47,6 @@ public class BookHistory {
 
     public void setReturned(boolean returned) {
         this.returned = returned;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getBookName() {
@@ -98,13 +86,10 @@ public class BookHistory {
         return "BookHistory{" +
                 "hId=" + hId +
                 ", returned=" + returned +
-                ", userName='" + userName + '\'' +
                 ", bookName='" + bookName + '\'' +
                 ", dueDate=" + dueDate +
                 ", books=" + books +
                 ", user=" + user +
                 '}';
     }
-
-
 }
