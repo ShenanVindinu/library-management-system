@@ -35,6 +35,8 @@ public class LoginFormController {
 
 
 
+
+
     @FXML
     void login(ActionEvent event) throws IOException {
 
@@ -66,9 +68,16 @@ public class LoginFormController {
         window.setScene(new Scene(rootNode, 800,600));
     }
 
+    public static String sendUserName;
+
     private boolean loginManager(String userName, String password) {
         User user = loginBO.signIn(userName, password);
+        sendUser(user);
         return (user != null);
+    }
+
+    private void sendUser(User user) {
+        sendUserName = user.getUserName();
     }
 
     private void showAlert() {
