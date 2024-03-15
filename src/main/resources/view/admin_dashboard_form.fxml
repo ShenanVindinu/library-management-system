@@ -55,7 +55,7 @@
                 </Button>
             </children>
         </VBox>
-        <TextField fx:id="searchBar" layoutX="324.0" layoutY="67.0" prefHeight="59.0" prefWidth="653.0" promptText="Click and enter title to find Book" style="-fx-background-radius: 45; -fx-background-color: #212A3E;" AnchorPane.leftAnchor="324.0" AnchorPane.rightAnchor="223.20000000000005">
+        <TextField fx:id="searchBar" layoutX="324.0" layoutY="67.0" prefHeight="59.0" prefWidth="653.0" promptText="Click and enter title to find Book" style="-fx-background-radius: 45; -fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="324.0" AnchorPane.rightAnchor="223.20000000000005">
             <padding>
                 <Insets left="30.0" />
             </padding>
@@ -63,7 +63,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <Button fx:id="searchButton" layoutX="991.0" layoutY="66.0" mnemonicParsing="false" onAction="#searchBook" prefHeight="47.0" prefWidth="166.0" style="-fx-background-color: #212A3E; -fx-background-radius: 45;" text="Search" textFill="WHITE">
+        <Button fx:id="searchButton" layoutX="991.0" layoutY="66.0" mnemonicParsing="false" onAction="#searchBook" prefHeight="47.0" prefWidth="166.0" style="-fx-background-color: #212A3E; -fx-background-radius: 45;" stylesheets="@../css/fullpackstyling.css" text="Search" textFill="WHITE">
             <font>
                 <Font name="Josefin Sans Regular" size="30.0" />
             </font>
