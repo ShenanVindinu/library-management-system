@@ -18,7 +18,7 @@ public class BookHistory {
     @Temporal(TemporalType.DATE)
     @Column(name = "due_date")
     private Date dueDate;
-    @OneToMany(mappedBy = "bookHistory")
+    @OneToMany(mappedBy = "bookHistory", fetch = FetchType.EAGER)
     private List<Book> books = new ArrayList<>();
     @OneToOne
     private User user;

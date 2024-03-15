@@ -14,5 +14,12 @@ public class UserProfileDAOImpl {
         transaction.commit();
         session.close();
     }
+    public void update(BookHistory bookHistory) {
+        Session session = SessionFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(bookHistory);
+        transaction.commit();
+        session.close();
+    }
 
 }

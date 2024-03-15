@@ -10,4 +10,7 @@ public class UserProfileBOImpl {
     public void addToBookHistory(BookHistory bookHistory) {
         userProfileDAO.add(bookHistory);
     }
+    public void updateBookHistory(BookHistory bookHistory) {
+        userProfileDAO.update(bookHistory);
+    }
 }

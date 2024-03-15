@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -71,20 +70,15 @@
             <Font name="Josefin Sans Regular" size="48.0" />
          </font>
       </Text>
-      <TextField fx:id="titleField" layoutX="443.0" layoutY="607.0" prefHeight="36.0" prefWidth="315.0" promptText="Title">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <Button fx:id="returnBookButton" layoutX="785.0" layoutY="607.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="50.0" prefWidth="123.0" style="-fx-background-color: #B2CD6C;" text="Return">
-         <font>
-            <Font name="Josefin Sans Regular" size="24.0" />
-         </font>
-      </Button>
       <Button fx:id="userDetailsButton" layoutX="990.0" layoutY="717.0" mnemonicParsing="false" onAction="#visitUserDetails" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #B2CD6C;" text="User Details">
          <font>
             <Font name="Josefin Sans Regular" size="24.0" />
          </font>
       </Button>
+      <Text fill="WHITE" layoutX="608.0" layoutY="649.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click a book to return it" textAlignment="CENTER">
+         <font>
+            <Font name="Josefin Sans Regular" size="26.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
