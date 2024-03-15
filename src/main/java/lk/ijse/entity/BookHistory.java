@@ -26,12 +26,14 @@ public class BookHistory {
     public BookHistory() {
     }
 
-    public BookHistory(int hId, boolean returned, String bookName, Date dueDate) {
-        this.hId = hId;
-        this.returned = returned;
+
+    public BookHistory(String bookName, Date dueDate, boolean returned) {
         this.bookName = bookName;
         this.dueDate = dueDate;
+        this.returned = returned;
     }
+
+
 
     public int gethId() {
         return hId;

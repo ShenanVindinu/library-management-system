@@ -59,8 +59,9 @@
             <content>
                 <TableView fx:id="bookTable" prefHeight="398.0" prefWidth="771.0" style="-fx-background-color: #212A3E;" stylesheets="@../css/fullpackstyling.css">
                     <columns>
-                        <TableColumn fx:id="authorColumn" prefWidth="382.6666687130928" text="       Book Name" />
-                        <TableColumn fx:id="titleColumn" prefWidth="438.93328857421875" text="       Due Date" />
+                        <TableColumn fx:id="bookNameColumn" prefWidth="455.0" text="       Book Name" />
+                        <TableColumn fx:id="DueDateColumn" prefWidth="187.0" text="       Due Date" />
+                  <TableColumn fx:id="returnStatusColumn" prefWidth="110.0" text="return Status" />
                     </columns>
                 </TableView>
             </content>
