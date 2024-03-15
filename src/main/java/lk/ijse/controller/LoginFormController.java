@@ -72,12 +72,11 @@ public class LoginFormController {
 
     private boolean loginManager(String userName, String password) {
         User user = loginBO.signIn(userName, password);
-        sendUser(user);
-        return (user != null);
-    }
-
-    private void sendUser(User user) {
+        if (user==null) {
+            return false;
+        }
         sendUserName = user.getUserName();
+        return (user != null);
     }
 
     private void showAlert() {
