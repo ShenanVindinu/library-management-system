@@ -27,4 +27,14 @@ public class SignupDAOImpl implements SignupDAO {
         session.getTransaction().commit();
         session.close();
     }
+
+    @Override
+    public void update(User user,String password) {
+        user.setPassword(password);
+        Session session = SessionFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(user);
+        transaction.commit();
+        session.close();
+    }
 }

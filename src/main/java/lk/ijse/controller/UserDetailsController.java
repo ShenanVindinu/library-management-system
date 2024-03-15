@@ -8,6 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.bo.custom.AdminUserProfileBO;
+import lk.ijse.bo.custom.SignupBO;
+import lk.ijse.bo.custom.impl.AdminUserProfileBOImpl;
+import lk.ijse.bo.custom.impl.SignupBOImpl;
+import lk.ijse.entity.User;
 
 import java.io.IOException;
 
@@ -26,13 +31,16 @@ public class UserDetailsController {
     private Button myProfileButton;
 
     @FXML
+    private TextField usernameField;
+
+    @FXML
     private TextField passwordField;
 
     @FXML
     private Button updateButton;
 
-    @FXML
-    private TextField usernameField;
+    AdminUserProfileBO adminUserProfileBO = new AdminUserProfileBOImpl();
+    SignupBO signupBO = new SignupBOImpl();
 
     @FXML
     void backToBookHistory(ActionEvent event) throws IOException {
@@ -51,6 +59,19 @@ public class UserDetailsController {
     @FXML
     void updateUserDetails(ActionEvent event) {
 
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+
+        User user = adminUserProfileBO.findUserByUsername(username);
+
+        if (user != null) {
+            signupBO.updateUser(user,password);
+            System.out.println("User details updated successfully!");
+
+        } else {
+            System.err.println("User with username '" + username + "' not found.");
+        }
     }
 
     @FXML

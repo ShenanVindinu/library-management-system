@@ -5,6 +5,9 @@ import lk.ijse.entity.User;
 public interface SignupDAO {
 
     Long existUsername(String userName);
+
     void save(User user);
+
+    void update(User user,String password);
 
 }

@@ -19,4 +19,9 @@ public class SignupBOImpl implements SignupBO {
         signupDAOImpl.save(user);
     }
 
+    @Override
+    public void updateUser(User user,String password) {
+        signupDAOImpl.update(user,password);
+    }
+
 }

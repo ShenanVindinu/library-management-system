@@ -6,5 +6,7 @@ public interface LoginDAO {
 
     User getUserNamePassword(String userName, String password);
 
+    User getUserName(String username);
+
 
 }

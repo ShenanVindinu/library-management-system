@@ -1,10 +1,17 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.AdminUserProfileBO;
+import lk.ijse.config.SessionFactoryConfiguration;
 import lk.ijse.dao.custom.AdminUserProfileDAO;
+import lk.ijse.dao.custom.LoginDAO;
 import lk.ijse.dao.custom.impl.AdminUserProfileDAOImpl;
+import lk.ijse.dao.custom.impl.LoginDAOImpl;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
+import lk.ijse.entity.User;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +19,7 @@ import java.util.List;
 public class AdminUserProfileBOImpl implements AdminUserProfileBO {
 
     AdminUserProfileDAO adminUserProfileDAOImpl = new AdminUserProfileDAOImpl();
+    LoginDAO loginDAO  = new LoginDAOImpl();
 
     @Override
     public Branch getBranchByName(String branchName) {
@@ -52,4 +60,11 @@ public class AdminUserProfileBOImpl implements AdminUserProfileBO {
     public List<Book> searchBooks(String searchTerm)  {
         return adminUserProfileDAOImpl.search(searchTerm);
     }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return loginDAO.getUserName(username);
+    }
+
+
 }

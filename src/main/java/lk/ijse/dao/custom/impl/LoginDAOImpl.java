@@ -4,6 +4,7 @@ import lk.ijse.config.SessionFactoryConfiguration;
 import lk.ijse.dao.custom.LoginDAO;
 import lk.ijse.entity.User;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class LoginDAOImpl implements LoginDAO {
@@ -17,6 +18,19 @@ public class LoginDAOImpl implements LoginDAO {
         query.setParameter("inputPassword", password);
 
         User user = query.uniqueResult();
+        session.close();
+        return user;
+    }
+
+    @Override
+    public User getUserName(String username) {
+        User user = null;
+        Session session = SessionFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query<User> query = session.createQuery("FROM User WHERE userName = :userName", User.class);
+        query.setParameter("userName", username);
+        user = query.uniqueResult();
+        transaction.commit();
         session.close();
         return user;
     }
