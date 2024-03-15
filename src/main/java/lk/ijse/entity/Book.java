@@ -83,10 +83,9 @@ public class Book {
                 ", availability=" + availability +
                 ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +
-                ", branch=" + branch +
-                ", bookHistory=" + bookHistory +
                 '}';
     }
+
 
 
 }

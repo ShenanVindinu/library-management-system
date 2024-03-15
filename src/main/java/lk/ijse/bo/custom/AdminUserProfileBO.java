@@ -3,6 +3,8 @@ package lk.ijse.bo.custom;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 
+import java.util.List;
+
 public interface AdminUserProfileBO {
 
     Branch getBranchByName(String branchName);
@@ -19,4 +21,5 @@ public interface AdminUserProfileBO {
 
     void saveBookToTable(Book book);
 
+    List<Book> searchBooks(String searchTerm);
 }

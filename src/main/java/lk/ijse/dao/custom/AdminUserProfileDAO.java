@@ -3,6 +3,8 @@ package lk.ijse.dao.custom;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 
+import java.util.List;
+
 public interface AdminUserProfileDAO {
 
     Branch fetchBranchByName(String branchName);
@@ -18,5 +20,7 @@ public interface AdminUserProfileDAO {
     void saveBranch(Branch branch);
 
     void saveBook(Book book);
+
+    List<Book> search(String searchTerm);
 
 }

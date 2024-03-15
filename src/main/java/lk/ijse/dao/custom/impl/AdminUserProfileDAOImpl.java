@@ -8,6 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AdminUserProfileDAOImpl implements AdminUserProfileDAO {
 
     @Override
@@ -78,6 +82,29 @@ public class AdminUserProfileDAOImpl implements AdminUserProfileDAO {
         session.persist(book);
         transaction.commit();
         session.close();
+    }
+
+    @Override
+    public List<Book> search(String searchTerm) {
+        Session session = SessionFactoryConfiguration.getInstance().getSession();
+
+        String[] searchTermsArray = searchTerm.split(",");
+        List<String> searchTermsList = Arrays.asList(searchTermsArray);
+
+        List<Book> books = new ArrayList<>();
+
+        for (String term : searchTermsList) {
+
+            Query<Book> query = session.createQuery("FROM Book WHERE bookName LIKE :searchTerm "
+                    + "OR author LIKE :searchTerm "
+                    + "OR genre LIKE :searchTerm", Book.class);
+
+            query.setParameter("searchTerm", "%" + term.trim() + "%");
+
+            books.addAll(query.getResultList());
+        }
+        session.close();
+        return books;
     }
 
 }

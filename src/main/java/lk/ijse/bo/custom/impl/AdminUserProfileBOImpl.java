@@ -6,6 +6,9 @@ import lk.ijse.dao.custom.impl.AdminUserProfileDAOImpl;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AdminUserProfileBOImpl implements AdminUserProfileBO {
 
     AdminUserProfileDAO adminUserProfileDAOImpl = new AdminUserProfileDAOImpl();
@@ -43,5 +46,10 @@ public class AdminUserProfileBOImpl implements AdminUserProfileBO {
     @Override
     public void saveBookToTable(Book book) {
         adminUserProfileDAOImpl.saveBook(book);
+    }
+
+    @Override
+    public List<Book> searchBooks(String searchTerm)  {
+        return adminUserProfileDAOImpl.search(searchTerm);
     }
 }
