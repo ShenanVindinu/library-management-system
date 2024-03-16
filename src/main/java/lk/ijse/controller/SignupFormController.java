@@ -62,7 +62,7 @@ public class SignupFormController {
         }
 
         else {
-            User user = new User(nameText, emailText, usernameText, passwordText);
+            User user = new User(usernameText, emailText, nameText, passwordText);
             signupBO.saveUser(user);
         }
 
