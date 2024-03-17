@@ -33,6 +33,8 @@ public class LoginFormController {
 
     LoginBO loginBO = new LoginBOImpl();
 
+    public static String sendUserName;
+
 
 
 
@@ -67,8 +69,6 @@ public class LoginFormController {
         Stage window = (Stage) signupButton.getScene().getWindow();
         window.setScene(new Scene(rootNode, 800,600));
     }
-
-    public static String sendUserName;
 
     private boolean loginManager(String userName, String password) {
         User user = loginBO.signIn(userName, password);

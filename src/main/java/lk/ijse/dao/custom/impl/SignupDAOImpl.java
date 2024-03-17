@@ -24,7 +24,7 @@ public class SignupDAOImpl implements SignupDAO {
         Session session = SessionFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.persist(user);
-        session.getTransaction().commit();
+        transaction.commit();
         session.close();
     }
 
