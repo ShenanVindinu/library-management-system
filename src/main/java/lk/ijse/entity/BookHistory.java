@@ -18,10 +18,12 @@ public class BookHistory {
     @Temporal(TemporalType.DATE)
     @Column(name = "due_date")
     private Date dueDate;
-    @OneToMany(mappedBy = "bookHistory", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "bookHistory", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Book> books = new ArrayList<>();
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
+
 
     public BookHistory() {
     }
