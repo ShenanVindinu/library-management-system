@@ -10,10 +10,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lk.ijse.bo.custom.AdminUserProfileBO;
 import lk.ijse.bo.custom.impl.AdminUserProfileBOImpl;
+import lk.ijse.config.SessionFactoryConfiguration;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AdminUserProfileController {
 
@@ -128,21 +132,44 @@ public class AdminUserProfileController {
 
     }
 
+    //transaction
     @FXML
     void removeBranch(ActionEvent event) {
 
         String branchName = branchField.getText();
 
-        Branch branch = adminUserProfileBOImpl.getBranchByName(branchName);
+        // Begin transaction
+        Transaction transaction = null;
+        try (Session session = SessionFactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
 
-        if (branch != null) {
+            // Fetch the branch entity based on the provided branch name
+            Branch branch = adminUserProfileBOImpl.getBranchByName(branchName);
 
-            adminUserProfileBOImpl.removeBranches(branch);
+            if (branch != null) {
+                // Fetch all the books related to that branch
+                List<Book> books = adminUserProfileBOImpl.getBooksByBranch(branch);
 
-            System.out.println("Branch removed successfully: " + branchName);
-        } else {
+                // Remove each book from the database
+                for (Book book : books) {
+                    session.remove(book);
+                }
 
-            System.out.println("No branch found with the name: " + branchName);
+                // Commit the transaction
+                transaction.commit();
+
+                // Remove the branch itself
+                adminUserProfileBOImpl.removeBranches(branch);
+
+                System.out.println("Branch and related books removed successfully: " + branchName);
+            } else {
+                System.out.println("No branch found with the name: " + branchName);
+            }
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
         }
     }
 

@@ -25,4 +25,7 @@ public interface AdminUserProfileBO {
     List<Book> searchBooks(String searchTerm);
 
     User findUserByUsername(String username);
+
+    List<Book> getBooksByBranch(Branch branch);
+
 }

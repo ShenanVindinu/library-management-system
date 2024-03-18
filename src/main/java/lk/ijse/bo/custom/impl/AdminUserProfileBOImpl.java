@@ -66,5 +66,10 @@ public class AdminUserProfileBOImpl implements AdminUserProfileBO {
         return loginDAO.getUserName(username);
     }
 
+    @Override
+    public List<Book> getBooksByBranch(Branch branch) {
+        return adminUserProfileDAOImpl.findBookByBranch(branch);
+    }
+
 
 }

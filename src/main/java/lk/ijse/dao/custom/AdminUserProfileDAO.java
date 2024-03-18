@@ -23,4 +23,5 @@ public interface AdminUserProfileDAO {
 
     List<Book> search(String searchTerm);
 
+    List<Book> findBookByBranch(Branch branch);
 }

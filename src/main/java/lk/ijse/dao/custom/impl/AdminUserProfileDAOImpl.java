@@ -107,4 +107,20 @@ public class AdminUserProfileDAOImpl implements AdminUserProfileDAO {
         return books;
     }
 
+    @Override
+    public List<Book> findBookByBranch(Branch branch) {
+        try (Session session = SessionFactoryConfiguration.getInstance().getSession()) {
+            // Create and execute HQL query to retrieve books related to the given branch
+            Query<Book> query = session.createQuery(
+                    "SELECT b FROM Book b WHERE b.branch = :branch",
+                    Book.class
+            );
+            query.setParameter("branch", branch);
+            return query.list();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
 }
